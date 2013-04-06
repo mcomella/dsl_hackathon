@@ -17,7 +17,6 @@ function ajaxRequest(url, callback) {
 // Request collections at the top level
 // Transform into d3 forma
 
-/*
 var w = 1280,
     h = 800,
     r = 720,
@@ -87,4 +86,3 @@ function zoom(d, i) {
 }
 
 console.log('linked ')
-*/
