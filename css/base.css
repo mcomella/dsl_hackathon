@@ -7,16 +7,49 @@ body {
   width: 25%;
   height: 65%;
 }
+
 #collections {
-  background-color: red;
   width: 75%;
   height: 60%;
+  border: 1px solid black;
   float: left;
 }
+
 #slideshow {
   position: fixed;
   border: 1px solid black;
   bottom:0;
   height: 30%;
   width: 100%
+}
+
+/* Flare.css */
+text {
+  font-size: 11px;
+  pointer-events: none;
+}
+
+text.parent {
+  fill: #1f77b4;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #999;
+  pointer-events: all;
+}
+
+circle.parent {
+  fill: #1f77b4;
+  fill-opacity: .1;
+  stroke: steelblue;
+}
+
+circle.parent:hover {
+  stroke: #ff7f0e;
+  stroke-width: .5px;
+}
+
+circle.child {
+  pointer-events: none;
 }
