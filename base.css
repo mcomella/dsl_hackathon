@@ -1,0 +1,22 @@
+body {
+  height: 100%
+}
+
+#items-wrapper {
+  float: left;
+  width: 25%;
+  height: 65%;
+}
+#collections {
+  background-color: red;
+  width: 75%;
+  height: 60%;
+  float: left;
+}
+#slideshow {
+  background-color: blue;
+  position: fixed;
+  bottom:0; 
+  height: 30%;
+  width: 100%
+}
