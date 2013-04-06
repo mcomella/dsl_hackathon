@@ -14,9 +14,9 @@ body {
   float: left;
 }
 #slideshow {
-  background-color: blue;
   position: fixed;
-  bottom:0; 
+  border: 1px solid black;
+  bottom:0;
   height: 30%;
   width: 100%
 }
