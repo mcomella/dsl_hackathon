@@ -1,21 +1,54 @@
 window.onload = function() {
   console.log("Hello")
-  ajaxRequest('http://repository.library.brown.edu/api/pub/collections/309/', function(data){
-    console.log("Hello", data)
-  });
+  var url = "https://repository.library.brown.edu/api/pub/collections/"
+  //callback = function(data) {console.log("Got data", data)};
+  ajaxRequest(url, generateD3json);
+  setTimeout(showCollections, 10000);
 }
 
 // Ajax request wrapper
 function ajaxRequest(url, callback) {
   $.ajax({
     url: url
-  }).done(function (data) {
-    callback();
+  }).done(function(data) {
+    res = callback(data);
   });
 }
 
-// Request collections at the top level
-// Transform into d3 forma
+var top = {name:"", children:[]};
+
+function showCollections() {
+  $collections = $("#collections");
+  $collections.text(JSON.stringify(top));
+  console.log(top);
+  // $collections.text(JSON.stringify(collections));
+}
+
+function generateD3json(data) {
+  var collections = data.collections;
+   collections.forEach( function(c, index, array) {
+     var child = {name:c.name, children:[]}
+     top.children.push(child)
+     ajaxRequest(c.json_uri, function (data) {
+       getChildrenGen(child, data);
+     });
+   });
+}
+
+function getChildrenGen(parent, data) {
+  if (data.child_folders.length == 0) {
+    parent.size = data.items.numFound;
+    //parent.items = data.items;
+  } else {
+    data.child_folders.forEach(function(child) {
+      var c = {name:child.name, children:[]};
+      parent.children.push(c);
+      ajaxRequest(child.json_uri, function(data) {
+        getChildrenGen(c, data)
+      });
+    });
+  }
+}
 
 var w = 1280,
     h = 800,
