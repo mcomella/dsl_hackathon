@@ -19,8 +19,7 @@ var top = {name:"", children:[]};
 
 function showCollections() {
   $collections = $("#collections");
-  $collections.text(JSON.stringify(top));
-  console.log(top);
+  generateCircles(top);
   // $collections.text(JSON.stringify(collections));
 }
 
@@ -68,7 +67,7 @@ var vis = d3.select("#collections").insert("svg:svg", "h2")
   .append("svg:g")
     .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
 
-d3.json("flare.json", function(data) {
+function generateCircles(data) {
   node = root = data;
 
   var nodes = pack.nodes(root);
@@ -94,7 +93,7 @@ d3.json("flare.json", function(data) {
       .text(function(d) { return d.name; });
 
   d3.select(window).on("click", function() { zoom(root); });
-});
+};
 
 function zoom(d, i) {
   var k = r / d.r / 2;
