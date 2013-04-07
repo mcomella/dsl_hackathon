@@ -1,5 +1,5 @@
 body {
-  height: 100%
+  height: 40em;
 }
 
 #items-wrapper {
@@ -8,7 +8,6 @@ body {
   height: 65%;
 }
 #collections {
-  background-color: red;
   width: 75%;
   height: 60%;
   float: left;
